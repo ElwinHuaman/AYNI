@@ -1,9 +1,19 @@
+function validateForm(){
+  var fromInput = document.getElementById("from").value;
+  var toInput = document.getElementById("to").value;
+  alert("Receibed: "+fromInput+"");
+  sparqlQuery("Elwin")
+}
+
+function sparqlQuery(name){
+  console.log("Hola "+name);
+}
 var bioportal = new SPARQL({
         apikey: "YOUR-API-KEY-HERE",
         endpoint: "http://sparql.bioontology.org/sparql/"
       });
 
- var query_string = "PREFIX omv: <http://omv.ontoware.org/2005/05/ontology#>\n\
+var query_string = "PREFIX omv: <http://omv.ontoware.org/2005/05/ontology#>\n\
                      SELECT ?ont ?name ?acr \n\
                      WHERE { \n\
                         ?ont a omv:Ontology .  \n\
@@ -36,5 +46,3 @@ var bioportal = new SPARQL({
  }
 
  bioportal.query(query_string).done(onSuccess).error(onFailure);
-
- 

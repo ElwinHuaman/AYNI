@@ -5,14 +5,14 @@
 
   <!-- BASIC CONNECTION SPARQL
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/sparql.js"></script>
-  <script type="text/javascript" src="js/search.js"></script> -->
+  <script type="text/javascript" src="js/search.js"></script>
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Skeleton: Responsive CSS Boilerplate</title>
+  <title>AYNI: Think about the future</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -49,35 +49,38 @@
     <div class="container">
       <div class="row">
         <div class="one-half column">
-          <h4 class="hero-heading">Stop coding non-responsive sites. Let users view sites from anywhere.</h4>
+          <h4 class="hero-heading">Save the World while traveling.<br>Do not stop!</h4>
           <!-- <form> -->
           <div class="row">
             <div class="six columns">
-              <label for="exampleEmailInput">Your email</label>
-              <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+              <label for="fromInput">From</label>
+              <input class="u-full-width" type="text" placeholder="Innsbruck" id="from">
             </div>
             <div class="six columns">
-              <label for="exampleRecipientInput">Reason for contacting</label>
-              <select class="u-full-width" id="exampleRecipientInput">
-                <option value="Option 1">Questions</option>
-                <option value="Option 2">Admiration</option>
-                <option value="Option 3">Can I get your number?</option>
-              </select>
+              <label for="toInput">To</label>
+              <input class="u-full-width" type="text" placeholder="Vienna" id="to">
             </div>
           </div>
           <div class="row">
             <div class="six columns">
-              <label for="exampleEmailInput">Your email</label>
-              <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+              <label for="daysInput">#Days</label>
+              <select class="u-full-width" id="days">
+                <option value="1">1 day</option>
+                <option value="2">2 days</option>
+                <option value="3">3 days</option>
+                <option value="7">1 week</option>
+                <option value="14">2 weeks</option>
+              </select>
             </div>
             <div class="six columns">
-              <label for="exampleEmailInput">Your email</label>
-              <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+              <label for="emailInput">Your email</label>
+              <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="emailInput">
             </div>
           </div>
           <!-- </form> -->
-          <a class="button button-primary" href="http://getskeleton.com">Try Skeleton</a>
+          <a class="button button-primary" onclick="validateForm()">Try Skeleton</a>
         </div>
+        <div id="result">Fetching ontology data...</div>
         <div class="one-half column phones">
           <img class="phone" src="images/iphone.png">
           <img class="phone" src="images/iphone.png">
