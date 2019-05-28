@@ -23,7 +23,7 @@ function sparqlQuery(inputTo){
   var queryCityNO2 = "PREFIX s: <http://qweb.cs.aau.dk/airbase/schema/>\n\
                       PREFIX p: <http://qweb.cs.aau.dk/airbase/property/>\n\
                       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\
-                      SELECT ?city (avg(?no2) as ?avgNO2)\n\
+                      SELECT (avg(?no2) as ?NO2)\n\
                       WHERE { \n\
                         ?obs s:NO2 ?no2 . \n\
                         ?obs s:year ?year . \n\
@@ -56,17 +56,62 @@ function onFailure(xhr, status) {
 
 function onSuccess(json) {
    var html = "<table border='1'>";
-   for (var b in json.results.bindings) {
-       html += "<tr>";
-       for (var x in json.head.vars) {
-           var value = json.results.bindings[b][json.head.vars[x]];
-           if (value.type == "uri")
-               html += "<td><a href='"+value.value+"'>" + value.value + "</a></td>";
-           else
-               html += "<td>" + value.value + "</td>";
-       }
-       html += "</tr>";
+   for (var binding in json.results.bindings){
+     var name = json.head.vars[binding];
+     var total = json.results.bindings[binding][json.head.vars[binding]].value;
+     html += "<tr>";
+     html += "<td>" + name + "</td>";
+     html += "<td>" + total + "</td>";
+     html += "<td><progress id=progress value="+total+" max=100></progress></td>";
+     html += "</tr>";
    }
    html += "</table>";
    document.getElementById("result").innerHTML = html;
+   progressBar(total);
 }
+
+function progressBar(value) {
+  var duration = 5000; // it should finish in 5 seconds !
+  var st = new Date().getTime();
+  var interval = setInterval(
+    function() {
+      var diff = Math.round(new Date().getTime() - st),
+        val = Math.round(diff / duration * 100);
+      val = val > 100 ? 100 : val;
+      $("#progress").css("width", val + "px");
+      $("#progress").text(val + "%");
+      if (diff >= duration) {
+        clearInterval(interval);
+      }
+    }, value);
+}
+
+
+// function progressBar(value){
+//     if(value > 60){
+//     $("#progress").css('background','red');
+//   }else if(numChecked == 2){
+//     $("#progress").css('background','orange');
+//   }else if(numChecked == 3){
+//     $("#progress").css('background','yellow');
+//   }else {
+//     $("#progress").css('background','lime');
+//   }
+// }
+
+// function onSuccess(json) {
+//    var html = "<table border='1'>";
+//    for (var b in json.results.bindings) {
+//        html += "<tr>";
+//        for (var x in json.head.vars) {
+//            var value = json.results.bindings[b][json.head.vars[x]];
+//            if (value.type == "uri")
+//                html += "<td><a href='"+value.value+"'>" + value.value + "</a></td>";
+//            else
+//                html += "<td>" + value.value + "</td>";
+//        }
+//        html += "</tr>";
+//    }
+//    html += "</table>";
+//    document.getElementById("result").innerHTML = html;
+// }
