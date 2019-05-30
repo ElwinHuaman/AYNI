@@ -32,6 +32,27 @@ function sparqlQuery(inputTo){
                         FILTER(?city = <http://qweb.cs.aau.dk/airbase/data/city/" + inputTo + "/>) \n\
                       } LIMIT 10";
 
+            // PREFIX s: <http://qweb.cs.aau.dk/airbase/schema/>
+            // PREFIX p: <http://qweb.cs.aau.dk/airbase/property/>
+            // PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            // PREFIX owl: <http://www.w3.org/2002/07/owl#>
+            // PREFIX dbr: <http://dbpedia.org/resource/>
+            // PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            // SELECT (avg(?no2) as ?NO2) (avg(?so2) as ?SO2)
+            // WHERE {
+            //   ?obs1 s:NO2 ?no2 .
+            //   ?obs1 s:year ?year .
+            //   ?obs1 s:station ?station .
+            //
+            //   ?obs2 s:SO2 ?so2 .
+            //   ?obs2 s:year ?year .
+            //   ?obs2 s:station ?station .
+            //
+            //   ?station s:inCity ?city .
+            //   ?city owl:sameAs ?same .
+            //   FILTER(?same = dbr:Oviedo)
+            //   } LIMIT 10
+
   var queryCountryName = "PREFIX dbpedia-owl:  <http://dbpedia.org/ontology/>\n\
                           PREFIX dbpedia: <http://dbpedia.org/resource>\n\
                           PREFIX dbpprop: <http://dbpedia.org/property>\n\
